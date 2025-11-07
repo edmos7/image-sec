@@ -6,6 +6,7 @@ Object detection processing pipeline for confirming overnight surveillance servi
 A camera would take pics, the goal is to confirm a certain car does in fact pass by...
 
 
+| Step | Image | Comment |
 |-------|--------|----------|
 | 1 | ![Step 1](imgs/img1.jpg) | _Snap pic if movement_ |
 | 2 | ![Step 2](imgs/img2.jpg) | _Parked cars don't help_ |
