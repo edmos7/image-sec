@@ -137,7 +137,7 @@ if len(imgs) != 0:
             body = f"""
             Buongiorno,
             Non sono state identificate macchine/persone
-            Per controllare di persona in caso di underperformance del modello, visita: http://192.168.80.160:2040/ko/
+            Per controllare di persona in caso di underperformance del modello, visita: address
             """
             cont = ssl.create_default_context()
             re = "Passaggio non Effettuato - ImageSecurityAI_2.0 Report"
