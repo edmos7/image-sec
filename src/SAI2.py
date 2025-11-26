@@ -15,10 +15,10 @@ from datetime import date
 print("Controllo cartella images...")
 opt = "/opt"
 #Prendi immagini dalla cartella con tutte quelle scattate
-curfold = (os.getcwd()+"/SAI2").replace('\\','/')#SAI2
+curfold = (os.getcwd()+"/name").replace('\\','/')
 if "toproc" in os.listdir(curfold):
     shutil.rmtree(curfold+"/toproc")
-srcfolder = opt+"/images2"#path alla cartella opt/images2
+srcfolder = opt+"/images"#path alla cartella opt/images2
 imgs = os.listdir(srcfolder)#lista immagini
 serv = ""
 port = int()
@@ -36,7 +36,7 @@ if len(imgs) != 0:
     #Ritaglia immagini
     print("Ritaglio Immagini...")
     os.makedirs(curfold+"/toproc")#smista tutte le immagini (post-crop) in un'altra cartella
-    proc = curfold+"/toproc"
+    proc = curfold+"/process"
     def resize(dirs):
         c = 0
         for item in dirs:
@@ -57,14 +57,14 @@ if len(imgs) != 0:
     day = str(date.today())
     day = day.split("-")
     day0 = day[2]+"-"+day[1]+"-"+day[0]
-    Ok = opt+"/archivio/ok/"+day0.replace("-","_")+"_2.0_"
-    Ko = opt+"/archivio/ko/"+day0.replace("-","_")+"_2.0_"
-    if day0.replace("-","_")+"_2.0_" not in os.listdir(opt+"/archivio/ok"):
+    Ok = opt+"/archive/ok/"+day0.replace("-","_")+"_2.0_"
+    Ko = opt+"/archive/ko/"+day0.replace("-","_")+"_2.0_"
+    if day0.replace("-","_")+"_2.0_" not in os.listdir(opt+"/archive/ok"):
         os.makedirs(Ok)
     else:
         shutil.rmtree(Ok)
         os.makedirs(Ok)
-    if day0.replace("-","_")+"_2.0_" not in os.listdir(opt+"/archivio/ko"):
+    if day0.replace("-","_")+"_2.0_" not in os.listdir(opt+"/archive/ko"):
         os.makedirs(Ko)
     else:
         shutil.rmtree(Ko)
@@ -76,9 +76,9 @@ if len(imgs) != 0:
     for i in range(len(ps)):
         obj = results[i].boxes.cls 
         if 0. in obj or 2. in obj :#0. is person class, 2. is car class
-            shutil.copy(curfold+"/toproc/"+ps[i],Ok)
+            shutil.copy(curfold+"/process/"+ps[i],Ok)
         else:
-            shutil.copy(curfold+"/toproc/"+ps[i],Ko)
+            shutil.copy(curfold+"/process/"+ps[i],Ko)
 
     #Send Emails(Ok,Ko,NoImgs function)
 
